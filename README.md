@@ -18,6 +18,6 @@ This software requires `Pillow`, which is Copyright (c) 1995-2015, Fredrik Lundh
 
 The following instructions will install Pillow on Ubuntu 15.04:
 
-# Install pip with `sudo apt-get install python-pip`
-# Install the required packages with `apt-get build-dep python-imaging libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev`
-# Install Pillow with `pip install Pillow`
+1. Install pip with `sudo apt-get install python-pip`
+2. Install the required packages with `apt-get build-dep python-imaging libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev`
+3. Install Pillow with `pip install Pillow`
