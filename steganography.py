@@ -2,14 +2,30 @@ import os, sys
 from PIL import Image
 
 def main():
+    
+    verbose = True # whether to show debug messages
+    numPixels = 0  # total image pixel count
+    
+    # open the image file
     imageName = getFilename()
     image = Image.open(imageName)
 
+    # count how many pixels it has
     numPixels = 0
     for pixel in image.getdata():
         numPixels += 1
+    if (verbose):
+        print("Image pixels: " + str(numPixels))
 
-    print("Image pixels: " + str(numPixels))
+    
+
+    
+
+# finds the length of the longest possible message for a given number of pixels
+def getMaxMessageLength( pixels ):
+    pixelsPerLetter = 32
+
+    return pixels // 32
 
 
 # returns the name of a valid image file from the user
