@@ -60,7 +60,7 @@ def main(argv):
 
     if not decode:
         # calculate max message length
-        maxLength = numPixels // density
+        maxLength = numPixels // density - 8
 
         # get and verify the message
         if message == "":
@@ -73,6 +73,13 @@ def main(argv):
             print("Encoding message: " + message)
 
         # encode the message
+        messageLength = len(message)
+        if (verbose):
+            print("Message to encode is " + str(messageLength) + " characters long.")
+        prefix = str(messageLength).zfill(8) # the first 8 digits of the message specify the message's length
+        message = prefix + message
+        if (verbose):
+            print("Prefix string is " + prefix)
         pixels = list(image.getdata())
         i = 0
         messageIndex = 0
@@ -121,8 +128,8 @@ def main(argv):
         newImage.putdata(pixels)
 
         if (verbose):
-            print("Outputting modified image as new_" + imageName)
-        newImage.save("new_" + imageName)
+            print("Outputting modified image as output.png...")
+        newImage.save("output.png")
 
     # decode an image and return the hidden message
     else:
@@ -136,7 +143,21 @@ def main(argv):
             if (i % density) == 0:
                 message += pixelToChar(pixels[i])
             i += 1
-        print("Message: " + message)
+
+        # find the length of the encoded message
+        messageLength = int(message[:8])
+        if (verbose):
+            print("Length of encoded message is " + str(messageLength) + " characters.")
+
+        # trim the garbage data from the message string
+        maxSize = len(pixels)
+        if (verbose):
+            print("Max message size is " + str(maxSize))
+        charsToRemove = -1 * (len(message) - messageLength - 8)
+        messageBody = message[8:charsToRemove]
+
+        # output the final message
+        print("Message: " + messageBody)
 
 # get a valid message from the user
 def getMessage(maxLength):
