@@ -1,6 +1,6 @@
 # steganography.py beta v0.1
 
-import os, sys, getopt, imp
+import os, sys, getopt, imp, ntpath
 from PIL import Image
 import thread
 from PyQt4 import QtCore, QtGui
@@ -54,6 +54,7 @@ class Steganography(QtGui.QMainWindow):
                 self.image.paste(rawImage)
             
                 self.ui.lbl_image.setPixmap(QtGui.QPixmap(self.imagePath))
+                self.ui.lbl_filename.setText(ntpath.basename(self.imagePath))
                 self.message("Image loaded successfully.")
                 self.displayImageInfo()
             except Exception as e:
@@ -287,8 +288,7 @@ class Steganography(QtGui.QMainWindow):
             return '\n'
         else:
             return chr(charId + 32)
-
-
+            
 # start in the main function
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)

@@ -3,12 +3,6 @@ Copyright (c) 2015 Nick Klose under the GNU General Public License, Version 2.
 
 This software is a personal [steganography](http://en.wikipedia.org/wiki/Steganography) project, which encodes alphanumeric messages in regular images. The messages can then be decrypted by a recipient using the same software.
 
-## Features in Development
-* Hide alphanumeric messages within a selected image of sufficient resolution
-* Messages between two parties can be hidden/revealed using this software and an agreed-upon key
-* Support for multiple image formats
-* GUI
-
 ## Included Files
 * sample.jpg is a free image from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Peyto_Lake-Banff_NP-Canada.jpg)
 
