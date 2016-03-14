@@ -58,3 +58,8 @@ target/
 
 # Ignore temporary files
 *~
+
+# Ignore default output image
+output.jpg
+output.png
+output.bmp

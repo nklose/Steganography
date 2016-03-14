@@ -14,9 +14,11 @@ This software is a personal [steganography](http://en.wikipedia.org/wiki/Stegano
 
 ## Required Packages
 
+[Python 2.7](https://www.python.org/) is required to run this software. 
+
 The software requires either `PIL` (Copyright © 1997-2011 by Secret Labs AB & Fredrik Lundh) or `Pillow` (Copyright (c) 1995-2015 Fredrik Lundh and Contributors, Alex Clark and Contributors).
 
-The GUI version of the software also requires `PyQt4`, which is Copyright (c) 2015 Riverbank Computing Limited.
+The GUI version of the software also requires `PyQt4` for Python 2.7, which is Copyright (c) 2015 Riverbank Computing Limited.
 
 ### Windows
 * [`PIL` Download](http://www.pythonware.com/products/pil/#pil117)
