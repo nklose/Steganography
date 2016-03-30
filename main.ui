@@ -338,9 +338,9 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>170</y>
+       <y>180</y>
        <width>141</width>
-       <height>61</height>
+       <height>71</height>
       </rect>
      </property>
      <property name="text">
@@ -395,32 +395,6 @@
       <number>-1</number>
      </property>
     </widget>
-    <widget class="QPushButton" name="btn_process">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>250</y>
-       <width>161</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="acceptDrops">
-      <bool>false</bool>
-     </property>
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>Process</string>
-     </property>
-    </widget>
    </widget>
    <widget class="QGroupBox" name="group_message">
     <property name="geometry">
@@ -440,7 +414,7 @@
        <x>180</x>
        <y>20</y>
        <width>811</width>
-       <height>211</height>
+       <height>191</height>
       </rect>
      </property>
      <property name="font">
@@ -477,9 +451,9 @@
     <widget class="QLabel" name="lbl_num_characters">
      <property name="geometry">
       <rect>
-       <x>135</x>
-       <y>233</y>
-       <width>851</width>
+       <x>180</x>
+       <y>220</y>
+       <width>811</width>
        <height>20</height>
       </rect>
      </property>
@@ -500,13 +474,13 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>70</y>
+       <y>60</y>
        <width>151</width>
        <height>91</height>
       </rect>
      </property>
      <property name="text">
-      <string>Enter the message you would like to encode into the box. English letters, numbers, and spaces are supported, plus the following characters:                </string>
+      <string>Enter the message you would like to encode into the box. Whitespace characters will be converted into spaces. English letters, numbers, and spaces are supported, plus the following characters:                </string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -519,9 +493,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>150</y>
+       <y>140</y>
        <width>151</width>
-       <height>81</height>
+       <height>101</height>
       </rect>
      </property>
      <property name="font">
@@ -540,6 +514,96 @@
       <bool>true</bool>
      </property>
     </widget>
+    <widget class="QPushButton" name="btn_process">
+     <property name="geometry">
+      <rect>
+       <x>830</x>
+       <y>220</y>
+       <width>161</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="acceptDrops">
+      <bool>false</bool>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Process</string>
+     </property>
+     <property name="autoDefault">
+      <bool>true</bool>
+     </property>
+     <property name="default">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="lbl_spacing_info_2">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>0</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Text">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>109</red>
+          <green>109</green>
+          <blue>109</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Text">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>109</red>
+          <green>109</green>
+          <blue>109</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Text">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>120</red>
+          <green>120</green>
+          <blue>120</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>7</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Copyright © 2015 Nick Klose</string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
  </widget>

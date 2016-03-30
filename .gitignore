@@ -56,13 +56,5 @@ docs/_build/
 # PyBuilder
 target/
 
-# Temporary files
+# Ignore temporary files
 *~
-
-# Default output image
-output.jpg
-output.png
-output.bmp
-
-# Windows thumbnail files
-*.db

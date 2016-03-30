@@ -1,7 +1,7 @@
 # steganography_nogui.py beta v0.1
 # run with --help for options
 
-import os, sys, getopt, imp
+import os, sys, getopt
 from PIL import Image
 
 def main(argv):
@@ -12,13 +12,6 @@ def main(argv):
     message = ""   # the message to be sent
     density = 32     # how many pixels between those that are modified
     decode = False
-    
-    # check whether Pillow is being used
-    pillow = True
-    try:
-        imp.find_module('Pillow')
-    except ImportError:
-        pillow = False
 
     # handle command line arguments
     opts, args = getopt.getopt(argv, "vdei:m:",["help","encode","decode","verbose"])
@@ -30,8 +23,7 @@ def main(argv):
             imageName = arg
             try:
                 image = Image.open(imageName)
-                if pillow:
-                    image.close()
+                image.close()
                 if (verbose):
                     print("Input image specified: " + imageName)
             except IOError as e:
@@ -47,9 +39,7 @@ def main(argv):
             print("steganography.py beta v0.1")
             print("You can add any of the following options while running this from command line:")
             print("\t-i <input image> specifies an image file to load")
-            print("\t-v or --verbose enables more detailed console output")
-            print("\t-m <message> specifies the message to encode")
-            print("\t-d or --decode switches to image decoding mode")
+            print("\t-v enables verbose mode, printing more details to the console")
             sys.exit()
 
     
@@ -184,11 +174,7 @@ def getFilename():
         try:
             fileName = raw_input("Enter the filename of the image to use: ")
             image = Image.open(fileName)
-            
-            # close() works with Pillow but not PIL
-            if pillow:
-                image.close()
-            
+            image.close()
             validFile = True
         except IOError as e: # a wild input error appeared!
             print("Could not open file. Exception: " + str(e))
