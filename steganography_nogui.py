@@ -78,12 +78,13 @@ def main(argv):
             print("Message to encode is " + str(messageLength) + " characters long.")
         prefix = str(messageLength).zfill(8) # the first 8 digits of the message specify the message's length
         message = prefix + message
+        print("Message set to " + message)
         if (verbose):
             print("Prefix string is " + prefix)
         pixels = list(image.getdata())
         i = 0
         messageIndex = 0
-        while i < numPixels and messageIndex < len(message):
+        while i < self.numPixels and messageIndex < len(message):
             # modify every nth pixel
             if (i % density) == 0:
                 # set pixel to "space" value

@@ -75,6 +75,10 @@ class Steganography(QtGui.QMainWindow):
             
                 self.ui.lbl_image.setPixmap(QtGui.QPixmap(self.imagePath))
                 
+                self.numPixels = 0
+                for pixel in self.image.getdata():
+                    self.numPixels += 1
+                
                 self.message("Image loaded successfully.")
                 self.displayImageInfo()
             except Exception as e:
@@ -122,12 +126,12 @@ class Steganography(QtGui.QMainWindow):
                     
                     # get character to encode into pixel
                     char = message[messageIndex]
-                    charId = id(char)
+                    charId = self.id(char)
                     
                     # add a third of the character ID to each color channel
                     newRed += (charId // 3) + (charId % 3)
-                    newGrn += charId // 32
-                    newBlu += charId // 32
+                    newGrn += charId // 3
+                    newBlu += charId // 3
                     
                     # ensure pixel values are still in range
                     if newRed > 255:
@@ -152,8 +156,27 @@ class Steganography(QtGui.QMainWindow):
             self.message("Image saved as output.png")
         else:
             self.message("Attempting to decode...")
+            pixels = list(self.image.getdata())
+            i = 0
+            message = ""                
                 
+            while i < self.numPixels:
+                if (i % self.spacing) == 0:
+                    message += self.pixelToChar(pixels[i])
+                i += 1
+                
+            # find the length of the encoded message
+            messageLength = int(message[:8])
             
+            # trim the garbage data
+            maxSize = len(pixels)
+            charsToRemove = -1 * (len(message) - messageLength - 8)
+            messageBody = message[8:charsToRemove]
+            
+            # display the decoded message
+            self.ui.text_message.setEnabled(True)
+            self.ui.text_message.setText(messageBody)
+            self.message("Decoding complete.")
         
     # load a message to encode from a text file
     def loadTextFile(self):
@@ -187,6 +210,7 @@ class Steganography(QtGui.QMainWindow):
         self.encode = False
         self.message(self.messageDecode)
         self.ui.text_message.setEnabled(False)
+        self.ui.text_message.setText("")
     
     # update the interface when the spacing value is changed
     def changeSpacing(self):
@@ -217,12 +241,13 @@ class Steganography(QtGui.QMainWindow):
         except Exception as e:
             self.message("Invalid character entered.")
             self.messageText = oldMessage
+            self.ui.text_message.setText(oldMessage)
     
     # return the ID of a given character
     # ASCII values between 32 (space [ID=0]) and 126 (~ [ID=94]) are allowed
     # value 95 represents a newline character
     # values outside of this range default to space characters
-    def id(char):
+    def id(self, char):
         # get the ASCII value
         asc = ord(char)
         
