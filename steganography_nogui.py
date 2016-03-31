@@ -23,7 +23,7 @@ def main(argv):
             imageName = arg
             try:
                 image = Image.open(imageName)
-                image.close()
+                #image.close()
                 if (verbose):
                     print("Input image specified: " + imageName)
             except IOError as e:
@@ -174,7 +174,7 @@ def getFilename():
         try:
             fileName = raw_input("Enter the filename of the image to use: ")
             image = Image.open(fileName)
-            image.close()
+            #image.close()
             validFile = True
         except IOError as e: # a wild input error appeared!
             print("Could not open file. Exception: " + str(e))
