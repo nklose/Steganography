@@ -14,6 +14,7 @@ class Steganography(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui.btn_process.setEnabled(False)
         
         # initialize variables
         self.imagePath = ""
@@ -166,18 +167,24 @@ class Steganography(QtGui.QMainWindow):
                 i += 1
                 
             # find the length of the encoded message
-            messageLength = int(message[:8])
+            try:
+                messageLength = int(message[:8])
+                # trim the garbage data
+                maxSize = len(pixels)
+                charsToRemove = -1 * (len(message) - messageLength - 8)
+                messageBody = message[8:charsToRemove]
+                
+                # display the decoded message
+                self.ui.text_message.setEnabled(True)
+                self.ui.text_message.setText(messageBody)
+                self.message("Decoding complete.")
             
-            # trim the garbage data
-            maxSize = len(pixels)
-            charsToRemove = -1 * (len(message) - messageLength - 8)
-            messageBody = message[8:charsToRemove]
+            # couldn't find message length from first 8 characters, indicating a problem
+            except ValueError:
+                self.message("Could not decode; is there a message in this image, and is the spacing correct?")
+                
             
-            # display the decoded message
-            self.ui.text_message.setEnabled(True)
-            self.ui.text_message.setText(messageBody)
-            self.message("Decoding complete.")
-        
+            
     # load a message to encode from a text file
     def loadTextFile(self):
         validFile = True
