@@ -1,5 +1,5 @@
 #####################################
-# steganography.py version 0.1        #
+# steganography.py version 0.1      #
 # Nick Klose | nick.klose@gmail.com #
 #####################################
 
@@ -121,6 +121,7 @@ class Steganography(QtGui.QMainWindow):
                     grn = pixel[1] # green pixel value
                     blu = pixel[2] # blue pixel value
                     
+                    # convert values to multiples of 35
                     newRed = red - (red % 35)
                     newGrn = grn - (grn % 35)
                     newBlu = blu - (blu % 35)
@@ -179,9 +180,9 @@ class Steganography(QtGui.QMainWindow):
                 self.ui.text_message.setText(messageBody)
                 self.message("Decoding complete.")
             
-            # couldn't find message length from first 8 characters, indicating a problem
+            # couldn't convert first 8 characters to an int, indicating a problem
             except ValueError:
-                self.message("Could not decode; is there a message in this image, and is the spacing correct?")
+                self.message("Could not decode; is there a message in this image? If so, is the spacing value correct?")
                 
             
             
@@ -198,6 +199,7 @@ class Steganography(QtGui.QMainWindow):
             
         if validFile:
             try:
+                # load the text file and display info about it
                 textFile = open(self.textPath, 'r')
                 self.messageText = str(textFile.read())
                 self.ui.text_message.setText(self.messageText)
@@ -206,13 +208,13 @@ class Steganography(QtGui.QMainWindow):
             except Exception as e:
                 self.message("Error loading text file.\n" + str(e))
     
-    # enables encoding mode (radio button)
+    # enables encoding mode, which encodes some text into an image
     def setEncode(self):
         self.encode = True
         self.message(self.messageDefault)
         self.ui.text_message.setEnabled(True)
         
-    # enables decoding mode (radio button)
+    # enables decoding mode, which reads text from an encoded image
     def setDecode(self):
         self.encode = False
         self.message(self.messageDecode)
@@ -229,31 +231,44 @@ class Steganography(QtGui.QMainWindow):
     def updateCharacters(self):
         self.ui.lbl_max_length_value.setText(str(self.maxChars) + " characters")
         self.ui.lbl_num_characters.setText(str(self.currentChars) + " / " + str(self.maxChars) + " characters")
+        
+        # message too long
         if self.currentChars > self.maxChars:
             self.ui.lbl_num_characters.setStyleSheet('color: red')
             self.message("Too many characters. Reduce the spacing, shorten your message, or use a larger image.")
             self.ui.btn_process.setEnabled(False)
+            
+        # message blank
+        elif self.currentChars == 0 and self.encode:
+            self.message(self.messageDefault)
+            self.ui.lbl_num_characters.setStyleSheet('color: black')
+            self.ui.btn_process.setEnabled(False)
+            
+        # message is ok
         else:
             self.ui.lbl_num_characters.setStyleSheet('color: black')
             self.message(self.messageDefault)
             self.ui.btn_process.setEnabled(True)
     
-    # update the interface when the text message to encode is modified
+    # update the interface when the text message is modified
     def updateMessage(self):
+        # back up the old message in case something goes wrong
         oldMessage = self.messageText;
         try:
+            # read message and update the interface
             self.messageText = str(self.ui.text_message.toPlainText())
             self.currentChars = len(self.messageText)
             self.updateCharacters()
         except Exception as e:
+            # discard the changes, as they are invalid
             self.message("Invalid character entered.")
             self.messageText = oldMessage
             self.ui.text_message.setText(oldMessage)
     
-    # return the ID of a given character
-    # ASCII values between 32 (space [ID=0]) and 126 (~ [ID=94]) are allowed
-    # value 95 represents a newline character
-    # values outside of this range default to space characters
+    # return the numeric ID of a given character
+    ## ASCII values between 32 (space [ID=0]) and 126 (~ [ID=94]) are allowed
+    ## value 95 represents a newline character
+    ## values outside of this range default to space characters
     def id(self, char):
         # get the ASCII value
         asc = ord(char)
@@ -267,7 +282,7 @@ class Steganography(QtGui.QMainWindow):
 
         return id
 
-    # take a pixel and return the corresponding character
+    # return the character corresponding to a given pixel
     def pixelToChar(self, pixel):
         red = pixel[0]
         grn = pixel[1]
