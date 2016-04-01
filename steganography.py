@@ -154,8 +154,20 @@ class Steganography(QtGui.QMainWindow):
             
             newImage = Image.new("RGB", self.image.size)
             newImage.putdata(pixels)
-            newImage.save("output.png")
-            self.message("Image saved as output.png")
+            
+            # ask user to select a save location and filename
+            savePath = str(QtGui.QFileDialog.getSaveFileName(this, tr("Save File"), tr("Images (*.png *.jpg *.bmp)")))
+            
+            # check if the user canceled the dialog
+            if savePath == "" or self.imagePath == None:
+                self.message("Save cancelled.")
+            else:
+                try:
+                    newImage.save(savePath)
+                    self.message("Image saved to " + savePath)
+                except Exception as e:
+                    self.message("Error saving image:\n" + str(e))
+                
         else:
             self.message("Attempting to decode...")
             pixels = list(self.image.getdata())
