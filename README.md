@@ -10,7 +10,7 @@ This software is a personal [steganography](http://en.wikipedia.org/wiki/Stegano
 
 On Windows, simply open `Steganography.exe` to use the software.
 
-To run the program through Python on Windows or another platform, you will need to install the software's dependencies separately. See the Required Packages section for more info on this.
+To run the program through Python on Windows or another platform, you will need to install the software's dependencies separately. See the *Required Packages* section for more info on this. Once you have the dependencies installed, you can run the GUI version with `python steganography.py` or the command-line version with `python steganography-nogui.py`.
 
 ### Interface
 ![Main interface for the software](https://raw.githubusercontent.com/nklose/Steganography/master/screenshot.png)
