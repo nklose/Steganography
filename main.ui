@@ -492,7 +492,7 @@
     <widget class="QLabel" name="lbl_allowed_symbols">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>140</y>
        <width>151</width>
        <height>101</height>
@@ -505,7 +505,7 @@
       </font>
      </property>
      <property name="text">
-      <string>!&quot;#$%&amp;'()              *+'-,/:;&lt;=&gt;         ?@[]^_`{|}~</string>
+      <string>!&quot;#$%&amp;'()\              *+-,/:;&lt;=&gt;         ?@[]^_`{|}~</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

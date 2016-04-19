@@ -12,7 +12,7 @@ This file lists characters which can be encoded as well as their unique IDs.
 9    )
 10   *
 11   +
-12   '
+12   ,
 13   -
 14   .
 15   /

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'main.ui'
+# Form implementation generated from reading ui file 'c:/steganography/main.ui'
 #
 # Created by: PyQt4 UI code generator 4.11.4
 #
@@ -210,7 +210,7 @@ class Ui_MainWindow(object):
         self.lbl_message_info.setWordWrap(True)
         self.lbl_message_info.setObjectName(_fromUtf8("lbl_message_info"))
         self.lbl_allowed_symbols = QtGui.QLabel(self.group_message)
-        self.lbl_allowed_symbols.setGeometry(QtCore.QRect(10, 140, 151, 101))
+        self.lbl_allowed_symbols.setGeometry(QtCore.QRect(20, 140, 151, 101))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Consolas"))
         font.setPointSize(12)
@@ -278,7 +278,17 @@ class Ui_MainWindow(object):
         self.btn_load_text_file.setText(_translate("MainWindow", "Load Text File", None))
         self.lbl_num_characters.setText(_translate("MainWindow", "0 / 0 characters", None))
         self.lbl_message_info.setText(_translate("MainWindow", "Enter the message you would like to encode into the box. Whitespace characters will be converted into spaces. English letters, numbers, and spaces are supported, plus the following characters:                ", None))
-        self.lbl_allowed_symbols.setText(_translate("MainWindow", "!\"#$%&\'()              *+\'-,/:;<=>         ?@[]^_`{|}~", None))
+        self.lbl_allowed_symbols.setText(_translate("MainWindow", "!\"#$%&\'()\\              *+-,/:;<=>         ?@[]^_`{|}~", None))
         self.btn_process.setText(_translate("MainWindow", "Process", None))
         self.lbl_spacing_info_2.setText(_translate("MainWindow", "Copyright © 2015 Nick Klose", None))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    MainWindow = QtGui.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
 
