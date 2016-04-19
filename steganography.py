@@ -156,7 +156,7 @@ class Steganography(QtGui.QMainWindow):
             newImage.putdata(pixels)
             
             # ask user to select a save location and filename
-            savePath = str(QtGui.QFileDialog.getSaveFileName(this, tr("Save File"), tr("Images (*.png *.jpg *.bmp)")))
+            savePath = str(QtGui.QFileDialog.getSaveFileName(self, "Save File", "output.png", filter="Images (*.png *.jpg *.bmp *.tga)"))
             
             # check if the user canceled the dialog
             if savePath == "" or self.imagePath == None:
